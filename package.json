@@ -1,0 +1,19 @@
+{
+  "name": "estree-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Sahil H. Mobaidin",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^28.0.3",
+    "rollup": "^2.71.1",
+    "rollup-jest": "^1.1.3"
+  }
+}
