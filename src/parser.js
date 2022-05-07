@@ -108,13 +108,17 @@ export class Parser {
   assignmentExpression() {
     const left = this.identifier();
 
-    if (this.lookahead.type !== "SIMPLE_ASSIGN") return left;
+    if (
+      this.lookahead.type !== "SIMPLE_ASSIGN" &&
+      this.lookahead.type !== "COMPLEX_ASSIGN"
+    )
+      return left;
 
-    this.eat("SIMPLE_ASSIGN");
+    const operator = this.binaryOperator();
 
     const right = this.expression();
 
-    return new AssignmentExpression({ left, right });
+    return new AssignmentExpression({ left, right, operator });
   }
 
   debuggerStatement() {
@@ -167,6 +171,15 @@ export class Parser {
   undefinedLiteral() {
     const value = this.eat("undefined");
     return new Literal({ value: undefined });
+  }
+
+  binaryOperator() {
+    switch (this.lookahead.type) {
+      case "SIMPLE_ASSIGN":
+        return this.eat("SIMPLE_ASSIGN");
+      case "COMPLEX_ASSIGN":
+        return this.eat("COMPLEX_ASSIGN");
+    }
   }
 
   eat(tokenType) {

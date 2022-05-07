@@ -17,6 +17,7 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new Literal({ value: "hello" }),
             }),
@@ -35,6 +36,7 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new Literal({ value: 1 }),
             }),
@@ -53,6 +55,7 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new Identifier({ name: "y" }),
             }),
@@ -71,8 +74,10 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new AssignmentExpression({
+                operator: "=",
                 left: new Identifier({ name: "y" }),
                 right: new Identifier({ name: "z" }),
               }),
@@ -92,8 +97,10 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new AssignmentExpression({
+                operator: "=",
                 left: new Identifier({ name: "y" }),
                 right: new Literal({ value: 1 }),
               }),
@@ -113,8 +120,10 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new AssignmentExpression({
+                operator: "=",
                 left: new Identifier({ name: "y" }),
                 right: new Literal({ value: "hello" }),
               }),
@@ -134,8 +143,10 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new AssignmentExpression({
+                operator: "=",
                 left: new Identifier({ name: "y" }),
                 right: new Literal({ value: null }),
               }),
@@ -155,8 +166,10 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new AssignmentExpression({
+                operator: "=",
                 left: new Identifier({ name: "y" }),
                 right: new Literal({ value: undefined }),
               }),
@@ -176,8 +189,10 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new AssignmentExpression({
+                operator: "=",
                 left: new Identifier({ name: "y" }),
                 right: new Literal({ value: true }),
               }),
@@ -197,11 +212,222 @@ describe("AssignmentExpression", () => {
         body: [
           new ExpressionStatement({
             expression: new AssignmentExpression({
+              operator: "=",
               left: new Identifier({ name: "x" }),
               right: new AssignmentExpression({
+                operator: "=",
                 left: new Identifier({ name: "y" }),
                 right: new Literal({ value: false }),
               }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses += assignment expression", () => {
+    const parser = new Parser("x += 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "+=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses -= assignment expression", () => {
+    const parser = new Parser("x -= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "-=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses *= assignment expression", () => {
+    const parser = new Parser("x *= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "*=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses /= assignment expression", () => {
+    const parser = new Parser("x /= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "/=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses %= assignment expression", () => {
+    const parser = new Parser("x %= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "%=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses |= assignment expression", () => {
+    const parser = new Parser("x |= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "|=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses ^= assignment expression", () => {
+    const parser = new Parser("x ^= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "^=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses &= assignment expression", () => {
+    const parser = new Parser("x &= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "&=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses <<= assignment expression", () => {
+    const parser = new Parser("x <<= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: "<<=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses >>= assignment expression", () => {
+    const parser = new Parser("x >>= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: ">>=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses >>>= assignment expression", () => {
+    const parser = new Parser("x >>>= 5;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              operator: ">>>=",
+              left: new Identifier({ name: "x" }),
+              right: new Literal({ value: 5 }),
             }),
           }),
         ],

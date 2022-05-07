@@ -15,6 +15,9 @@ const SPEC = [
   ["const", /^\bconst\b/],
   ["IDENTIFIER", /^\w+/],
   ["SIMPLE_ASSIGN", /^=/],
+  ["COMPLEX_ASSIGN", /^[\*\/\+\-\|\^\&\%]=/],
+  ["COMPLEX_ASSIGN", /^>{2,3}=/],
+  ["COMPLEX_ASSIGN", /^<{2}=/],
 ];
 
 export default SPEC;
