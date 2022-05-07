@@ -6,6 +6,6 @@ describe("EmptyStatement", () => {
     const parser = new Parser(";");
     const result = parser.parse();
 
-    expect(result).toEqual(new Program([new EmptyStatement()]));
+    expect(result).toEqual(new Program({ body: [new EmptyStatement()] }));
   });
 });

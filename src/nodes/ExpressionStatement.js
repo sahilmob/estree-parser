@@ -1,8 +1,8 @@
 export class ExpressionStatement {
+  expression;
   type = "ExpressionStatement";
-  expression = null;
 
-  constructor(expression) {
-    this.expression = expression;
+  constructor(args) {
+    this.expression = args.expression;
   }
 }

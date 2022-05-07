@@ -6,6 +6,6 @@ describe("DebuggerStatement", () => {
     const parser = new Parser("debugger");
     const result = parser.parse();
 
-    expect(result).toEqual(new Program([new DebuggerStatement()]));
+    expect(result).toEqual(new Program({ body: [new DebuggerStatement()] }));
   });
 });

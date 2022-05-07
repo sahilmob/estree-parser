@@ -1,8 +1,8 @@
 export class Program {
-  type = "Program";
   body = [];
+  type = "Program";
 
-  constructor(body) {
-    this.body = body;
+  constructor(args) {
+    this.body = args.body;
   }
 }
