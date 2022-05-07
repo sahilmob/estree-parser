@@ -6,6 +6,7 @@ import { DebuggerStatement } from "./DebuggerStatement";
 import { VariableDeclarator } from "./VariableDeclarator";
 import { VariableDeclaration } from "./VariableDeclaration";
 import { ExpressionStatement } from "./ExpressionStatement";
+import { AssignmentExpression } from "./AssignmentExpression";
 
 export {
   Program,
@@ -16,4 +17,5 @@ export {
   VariableDeclarator,
   VariableDeclaration,
   ExpressionStatement,
+  AssignmentExpression,
 };

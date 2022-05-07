@@ -1,6 +1,6 @@
 import SPEC from "./language-spec";
 
-export default class Lexer {
+export class Lexer {
   string = "";
   cursor = 0;
 

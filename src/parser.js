@@ -1,4 +1,4 @@
-import Lexer from "./lexer";
+import { Lexer } from "./lexer";
 import {
   Program,
   Literal,
@@ -8,6 +8,7 @@ import {
   VariableDeclarator,
   VariableDeclaration,
   ExpressionStatement,
+  AssignmentExpression,
 } from "./nodes/index";
 
 export class Parser {
@@ -96,12 +97,24 @@ export class Parser {
   }
 
   expression() {
-    // return this.assignmentExpression()
-    return this.literal();
+    switch (this.lookahead.type) {
+      case "IDENTIFIER":
+        return this.assignmentExpression();
+      default:
+        return this.literal();
+    }
   }
 
   assignmentExpression() {
-    // const left =
+    const left = this.identifier();
+
+    if (this.lookahead.type !== "SIMPLE_ASSIGN") return left;
+
+    this.eat("SIMPLE_ASSIGN");
+
+    const right = this.expression();
+
+    return new AssignmentExpression({ left, right });
   }
 
   debuggerStatement() {
