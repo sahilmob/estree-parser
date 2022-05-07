@@ -133,6 +133,14 @@ export class Parser {
         return this.numericLiteral();
       case "STRING":
         return this.stringLiteral();
+      case "true":
+        return this.booleanLiteral("true");
+      case "false":
+        return this.booleanLiteral("false");
+      case "null":
+        return this.nullLiteral();
+      case "undefined":
+        return this.undefinedLiteral();
     }
   }
 
@@ -144,6 +152,21 @@ export class Parser {
   stringLiteral() {
     const value = this.eat("STRING");
     return new Literal({ value: value.slice(1, -1) });
+  }
+
+  booleanLiteral(type) {
+    const value = this.eat(type);
+    return new Literal({ value: value === "true" ? true : false });
+  }
+
+  nullLiteral() {
+    const value = this.eat("null");
+    return new Literal({ value: null });
+  }
+
+  undefinedLiteral() {
+    const value = this.eat("undefined");
+    return new Literal({ value: undefined });
   }
 
   eat(tokenType) {

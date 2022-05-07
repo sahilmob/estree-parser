@@ -98,4 +98,120 @@ describe("VariableDeclaration", () => {
       })
     );
   });
+
+  it("parses multiple declarator when init === null", () => {
+    const parser = new Parser("const x, y, z = null;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new VariableDeclaration({
+            kind: "const",
+            declarations: [
+              new VariableDeclarator({
+                id: new Identifier({ name: "x" }),
+                init: new Literal({ value: null }),
+              }),
+              new VariableDeclarator({
+                id: new Identifier({ name: "y" }),
+                init: new Literal({ value: null }),
+              }),
+              new VariableDeclarator({
+                id: new Identifier({ name: "z" }),
+                init: new Literal({ value: null }),
+              }),
+            ],
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses multiple declarator when init === undefined", () => {
+    const parser = new Parser("const x, y, z = undefined;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new VariableDeclaration({
+            kind: "const",
+            declarations: [
+              new VariableDeclarator({
+                id: new Identifier({ name: "x" }),
+                init: new Literal({ value: undefined }),
+              }),
+              new VariableDeclarator({
+                id: new Identifier({ name: "y" }),
+                init: new Literal({ value: undefined }),
+              }),
+              new VariableDeclarator({
+                id: new Identifier({ name: "z" }),
+                init: new Literal({ value: undefined }),
+              }),
+            ],
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses multiple declarator when init === true", () => {
+    const parser = new Parser("const x, y, z = true;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new VariableDeclaration({
+            kind: "const",
+            declarations: [
+              new VariableDeclarator({
+                id: new Identifier({ name: "x" }),
+                init: new Literal({ value: true }),
+              }),
+              new VariableDeclarator({
+                id: new Identifier({ name: "y" }),
+                init: new Literal({ value: true }),
+              }),
+              new VariableDeclarator({
+                id: new Identifier({ name: "z" }),
+                init: new Literal({ value: true }),
+              }),
+            ],
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses multiple declarator when init === false", () => {
+    const parser = new Parser("const x, y, z = false;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new VariableDeclaration({
+            kind: "const",
+            declarations: [
+              new VariableDeclarator({
+                id: new Identifier({ name: "x" }),
+                init: new Literal({ value: false }),
+              }),
+              new VariableDeclarator({
+                id: new Identifier({ name: "y" }),
+                init: new Literal({ value: false }),
+              }),
+              new VariableDeclarator({
+                id: new Identifier({ name: "z" }),
+                init: new Literal({ value: false }),
+              }),
+            ],
+          }),
+        ],
+      })
+    );
+  });
 });

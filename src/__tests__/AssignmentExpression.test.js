@@ -124,4 +124,88 @@ describe("AssignmentExpression", () => {
       })
     );
   });
+
+  it("parses assignment expression where right is an assignment expression itself with null", () => {
+    const parser = new Parser("x = y = null;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              left: new Identifier({ name: "x" }),
+              right: new AssignmentExpression({
+                left: new Identifier({ name: "y" }),
+                right: new Literal({ value: null }),
+              }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses assignment expression where right is an assignment expression itself with undefined", () => {
+    const parser = new Parser("x = y = undefined;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              left: new Identifier({ name: "x" }),
+              right: new AssignmentExpression({
+                left: new Identifier({ name: "y" }),
+                right: new Literal({ value: undefined }),
+              }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses assignment expression where right is an assignment expression itself with true", () => {
+    const parser = new Parser("x = y = true;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              left: new Identifier({ name: "x" }),
+              right: new AssignmentExpression({
+                left: new Identifier({ name: "y" }),
+                right: new Literal({ value: true }),
+              }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses assignment expression where right is an assignment expression itself with false", () => {
+    const parser = new Parser("x = y = false;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new AssignmentExpression({
+              left: new Identifier({ name: "x" }),
+              right: new AssignmentExpression({
+                left: new Identifier({ name: "y" }),
+                right: new Literal({ value: false }),
+              }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
 });
