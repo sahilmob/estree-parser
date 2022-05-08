@@ -4,6 +4,7 @@ import {
   Literal,
   Identifier,
   EmptyStatement,
+  BlockStatement,
   DebuggerStatement,
   VariableDeclarator,
   VariableDeclaration,
@@ -31,10 +32,10 @@ export class Parser {
     return new Program({ body: this.statementList() });
   }
 
-  statementList() {
+  statementList(stopToken = null) {
     const statementList = [this.statement()];
 
-    while (this.lookahead !== null) {
+    while (this.lookahead !== null && this.lookahead.type !== stopToken) {
       statementList.push(this.statement());
     }
 
@@ -44,6 +45,8 @@ export class Parser {
   statement() {
     const { type } = this.lookahead;
     switch (type) {
+      case "{":
+        return this.blockStatement();
       case ";":
         return this.emptyStatement();
       case "DEBUGGER":
@@ -55,6 +58,16 @@ export class Parser {
       default:
         return this.expressionStatement();
     }
+  }
+
+  blockStatement() {
+    this.eat("{");
+
+    const body = this.lookahead.type !== "}" ? this.statementList("}") : [];
+
+    this.eat("}");
+
+    return new BlockStatement({ body });
   }
 
   variableDeclaration() {

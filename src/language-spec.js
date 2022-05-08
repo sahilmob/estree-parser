@@ -2,6 +2,8 @@ const SPEC = [
   [null, /^\s+/],
   [";", /^;/],
   [",", /^,/],
+  ["{", /^\{/],
+  ["}", /^\}/],
   ["DEBUGGER", /^\bdebugger\b/],
   ["true", /^\btrue\b/],
   ["false", /^\bfalse\b/],

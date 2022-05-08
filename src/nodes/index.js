@@ -1,6 +1,7 @@
 import { Program } from "./Program";
 import { Literal } from "./Literal";
 import { Identifier } from "./Identifier";
+import { BlockStatement } from "./BlockStatement";
 import { EmptyStatement } from "./EmptyStatement";
 import { DebuggerStatement } from "./DebuggerStatement";
 import { VariableDeclarator } from "./VariableDeclarator";
@@ -12,6 +13,7 @@ export {
   Program,
   Literal,
   Identifier,
+  BlockStatement,
   EmptyStatement,
   DebuggerStatement,
   VariableDeclarator,
