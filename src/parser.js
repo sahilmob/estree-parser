@@ -5,6 +5,7 @@ import {
   Identifier,
   EmptyStatement,
   BlockStatement,
+  BinaryExpression,
   DebuggerStatement,
   VariableDeclarator,
   VariableDeclaration,
@@ -110,16 +111,11 @@ export class Parser {
   }
 
   expression() {
-    switch (this.lookahead.type) {
-      case "IDENTIFIER":
-        return this.assignmentExpression();
-      default:
-        return this.literal();
-    }
+    return this.assignmentExpression();
   }
 
   assignmentExpression() {
-    const left = this.identifier();
+    const left = this.additiveExpression();
 
     if (
       this.lookahead.type !== "SIMPLE_ASSIGN" &&
@@ -132,6 +128,62 @@ export class Parser {
     const right = this.expression();
 
     return new AssignmentExpression({ left, right, operator });
+  }
+
+  additiveExpression() {
+    let left = this.multiplicativeExpression();
+
+    while (this.lookahead.type === "ADDITIVE_OPERATOR") {
+      const operator = this.eat("ADDITIVE_OPERATOR");
+      const right = this.multiplicativeExpression();
+
+      left = new BinaryExpression({
+        left,
+        right,
+        operator,
+      });
+    }
+
+    return left;
+  }
+
+  multiplicativeExpression() {
+    let left = this.primaryExpression();
+
+    while (this.lookahead.type === "MULTIPLICATIVE_OPERATOR") {
+      const operator = this.eat("MULTIPLICATIVE_OPERATOR");
+      const right = this.primaryExpression();
+
+      left = new BinaryExpression({
+        left,
+        right,
+        operator,
+      });
+    }
+
+    return left;
+  }
+
+  // this highest providence of all expressions
+  primaryExpression() {
+    switch (this.lookahead.type) {
+      case "(":
+        return this.parenthesizedExpression();
+      case "IDENTIFIER":
+        return this.identifier();
+      default:
+        return this.literal();
+    }
+  }
+
+  parenthesizedExpression() {
+    this.eat("(");
+
+    const expression = this.expression();
+
+    this.eat(")");
+
+    return expression;
   }
 
   debuggerStatement() {

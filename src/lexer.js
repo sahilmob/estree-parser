@@ -19,6 +19,7 @@ export class Lexer {
     }
 
     const string = this.string.slice(this.cursor);
+    console.log(string);
     for (const [type, regex] of SPEC) {
       const tokenValue = this.match(regex, string);
 

@@ -4,6 +4,8 @@ const SPEC = [
   [",", /^,/],
   ["{", /^\{/],
   ["}", /^\}/],
+  ["(", /^\(/],
+  [")", /^\)/],
   ["DEBUGGER", /^\bdebugger\b/],
   ["true", /^\btrue\b/],
   ["false", /^\bfalse\b/],
@@ -18,6 +20,8 @@ const SPEC = [
   ["IDENTIFIER", /^\w+/],
   ["SIMPLE_ASSIGN", /^=/],
   ["COMPLEX_ASSIGN", /^[\*\/\+\-\|\^\&\%]=/],
+  ["ADDITIVE_OPERATOR", /^[+\-]/],
+  ["MULTIPLICATIVE_OPERATOR", /^[*\/]/],
   ["COMPLEX_ASSIGN", /^>{2,3}=/],
   ["COMPLEX_ASSIGN", /^<{2}=/],
 ];

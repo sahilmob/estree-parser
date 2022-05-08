@@ -5,6 +5,7 @@ import { BlockStatement } from "./BlockStatement";
 import { EmptyStatement } from "./EmptyStatement";
 import { DebuggerStatement } from "./DebuggerStatement";
 import { VariableDeclarator } from "./VariableDeclarator";
+import { BinaryExpression } from "./BinaryExpression";
 import { VariableDeclaration } from "./VariableDeclaration";
 import { ExpressionStatement } from "./ExpressionStatement";
 import { AssignmentExpression } from "./AssignmentExpression";
@@ -15,6 +16,7 @@ export {
   Identifier,
   BlockStatement,
   EmptyStatement,
+  BinaryExpression,
   DebuggerStatement,
   VariableDeclarator,
   VariableDeclaration,
