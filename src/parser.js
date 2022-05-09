@@ -1,8 +1,11 @@
 import { Lexer } from "./lexer";
 import {
   Program,
-  Literal,
   Identifier,
+  NullLiteral,
+  StringLiteral,
+  BooleanLiteral,
+  NumericLiteral,
   EmptyStatement,
   BlockStatement,
   BinaryExpression,
@@ -209,33 +212,33 @@ export class Parser {
       case "null":
         return this.nullLiteral();
       case "undefined":
-        return this.undefinedLiteral();
+        return this.undefined();
     }
   }
 
   numericLiteral() {
     const value = this.eat("NUMBER");
-    return new Literal({ value: Number(value) });
+    return new NumericLiteral({ value: Number(value) });
   }
 
   stringLiteral() {
     const value = this.eat("STRING");
-    return new Literal({ value: value.slice(1, -1) });
+    return new StringLiteral({ value: value.slice(1, -1) });
   }
 
   booleanLiteral(type) {
     const value = this.eat(type);
-    return new Literal({ value: value === "true" ? true : false });
+    return new BooleanLiteral({ value: value === "true" ? true : false });
   }
 
   nullLiteral() {
     const value = this.eat("null");
-    return new Literal({ value: null });
+    return new NullLiteral();
   }
 
-  undefinedLiteral() {
+  undefined() {
     const value = this.eat("undefined");
-    return new Literal({ value: undefined });
+    return new Identifier({ name: "undefined" });
   }
 
   binaryOperator() {

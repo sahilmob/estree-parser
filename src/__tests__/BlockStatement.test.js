@@ -1,8 +1,10 @@
 import { Parser } from "..";
 import {
-  Literal,
   Program,
   Identifier,
+  StringLiteral,
+  NumericLiteral,
+  BooleanLiteral,
   BlockStatement,
   VariableDeclarator,
   VariableDeclaration,
@@ -24,7 +26,7 @@ describe("BlockStatement", () => {
                 expression: new AssignmentExpression({
                   operator: "=",
                   left: new Identifier({ name: "x" }),
-                  right: new Literal({ value: "hello" }),
+                  right: new StringLiteral({ value: "hello" }),
                 }),
               }),
             ],
@@ -47,14 +49,14 @@ describe("BlockStatement", () => {
                 expression: new AssignmentExpression({
                   operator: "=",
                   left: new Identifier({ name: "x" }),
-                  right: new Literal({ value: 1 }),
+                  right: new NumericLiteral({ value: 1 }),
                 }),
               }),
               new ExpressionStatement({
                 expression: new AssignmentExpression({
                   operator: "=",
                   left: new Identifier({ name: "y" }),
-                  right: new Literal({ value: "hello" }),
+                  right: new StringLiteral({ value: "hello" }),
                 }),
               }),
             ],
@@ -92,14 +94,14 @@ describe("BlockStatement", () => {
                 expression: new AssignmentExpression({
                   operator: "=",
                   left: new Identifier({ name: "x" }),
-                  right: new Literal({ value: 1 }),
+                  right: new NumericLiteral({ value: 1 }),
                 }),
               }),
               new ExpressionStatement({
                 expression: new AssignmentExpression({
                   operator: "=",
                   left: new Identifier({ name: "y" }),
-                  right: new Literal({ value: "hello" }),
+                  right: new StringLiteral({ value: "hello" }),
                 }),
               }),
               new BlockStatement({
@@ -109,7 +111,7 @@ describe("BlockStatement", () => {
                     declarations: [
                       new VariableDeclarator({
                         id: new Identifier({ name: "x" }),
-                        init: new Literal({ value: true }),
+                        init: new BooleanLiteral({ value: true }),
                       }),
                     ],
                   }),

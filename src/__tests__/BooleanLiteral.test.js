@@ -1,5 +1,5 @@
 import { Parser } from "..";
-import { Literal, ExpressionStatement, Program } from "../nodes";
+import { Program, BooleanLiteral, ExpressionStatement } from "../nodes";
 
 describe("BooleanLiteral", () => {
   it("parses true", () => {
@@ -10,7 +10,7 @@ describe("BooleanLiteral", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: true }),
+            expression: new BooleanLiteral({ value: true }),
           }),
         ],
       })
@@ -25,7 +25,7 @@ describe("BooleanLiteral", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: false }),
+            expression: new BooleanLiteral({ value: false }),
           }),
         ],
       })

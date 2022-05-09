@@ -1,5 +1,5 @@
 import { Parser } from "..";
-import { ExpressionStatement, Literal, Program } from "../nodes";
+import { Program, NumericLiteral, ExpressionStatement } from "../nodes";
 
 describe("NumericLiteral", () => {
   it("parses numeric literals", () => {
@@ -10,7 +10,7 @@ describe("NumericLiteral", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: 123 }),
+            expression: new NumericLiteral({ value: 123 }),
           }),
         ],
       })

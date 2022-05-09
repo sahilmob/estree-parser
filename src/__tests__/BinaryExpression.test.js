@@ -1,8 +1,8 @@
 import { Parser } from "..";
 import {
   Program,
-  Literal,
   Identifier,
+  NumericLiteral,
   BinaryExpression,
   ExpressionStatement,
 } from "../nodes";
@@ -18,8 +18,8 @@ describe("BinaryExpression", () => {
           new ExpressionStatement({
             expression: new BinaryExpression({
               operator: "+",
-              left: new Literal({ value: 5 }),
-              right: new Literal({ value: 2 }),
+              left: new NumericLiteral({ value: 5 }),
+              right: new NumericLiteral({ value: 2 }),
             }),
           }),
         ],
@@ -37,8 +37,8 @@ describe("BinaryExpression", () => {
           new ExpressionStatement({
             expression: new BinaryExpression({
               operator: "-",
-              left: new Literal({ value: 5 }),
-              right: new Literal({ value: 2 }),
+              left: new NumericLiteral({ value: 5 }),
+              right: new NumericLiteral({ value: 2 }),
             }),
           }),
         ],
@@ -58,10 +58,10 @@ describe("BinaryExpression", () => {
               operator: "-",
               left: new BinaryExpression({
                 operator: "+",
-                left: new Literal({ value: 5 }),
-                right: new Literal({ value: 2 }),
+                left: new NumericLiteral({ value: 5 }),
+                right: new NumericLiteral({ value: 2 }),
               }),
-              right: new Literal({ value: 3 }),
+              right: new NumericLiteral({ value: 3 }),
             }),
           }),
         ],
@@ -81,10 +81,10 @@ describe("BinaryExpression", () => {
               operator: "+",
               left: new BinaryExpression({
                 operator: "-",
-                left: new Literal({ value: 5 }),
-                right: new Literal({ value: 2 }),
+                left: new NumericLiteral({ value: 5 }),
+                right: new NumericLiteral({ value: 2 }),
               }),
-              right: new Literal({ value: 3 }),
+              right: new NumericLiteral({ value: 3 }),
             }),
           }),
         ],
@@ -102,8 +102,8 @@ describe("BinaryExpression", () => {
           new ExpressionStatement({
             expression: new BinaryExpression({
               operator: "*",
-              left: new Literal({ value: 5 }),
-              right: new Literal({ value: 2 }),
+              left: new NumericLiteral({ value: 5 }),
+              right: new NumericLiteral({ value: 2 }),
             }),
           }),
         ],
@@ -121,8 +121,8 @@ describe("BinaryExpression", () => {
           new ExpressionStatement({
             expression: new BinaryExpression({
               operator: "/",
-              left: new Literal({ value: 5 }),
-              right: new Literal({ value: 2 }),
+              left: new NumericLiteral({ value: 5 }),
+              right: new NumericLiteral({ value: 2 }),
             }),
           }),
         ],
@@ -140,11 +140,11 @@ describe("BinaryExpression", () => {
           new ExpressionStatement({
             expression: new BinaryExpression({
               operator: "+",
-              left: new Literal({ value: 3 }),
+              left: new NumericLiteral({ value: 3 }),
               right: new BinaryExpression({
                 operator: "/",
-                left: new Literal({ value: 5 }),
-                right: new Literal({ value: 2 }),
+                left: new NumericLiteral({ value: 5 }),
+                right: new NumericLiteral({ value: 2 }),
               }),
             }),
           }),
@@ -165,10 +165,10 @@ describe("BinaryExpression", () => {
               operator: "/",
               left: new BinaryExpression({
                 operator: "*",
-                left: new Literal({ value: 3 }),
-                right: new Literal({ value: 5 }),
+                left: new NumericLiteral({ value: 3 }),
+                right: new NumericLiteral({ value: 5 }),
               }),
-              right: new Literal({ value: 2 }),
+              right: new NumericLiteral({ value: 2 }),
             }),
           }),
         ],
@@ -188,8 +188,8 @@ describe("BinaryExpression", () => {
               operator: "/",
               left: new BinaryExpression({
                 operator: "*",
-                left: new Literal({ value: 3 }),
-                right: new Literal({ value: 5 }),
+                left: new NumericLiteral({ value: 3 }),
+                right: new NumericLiteral({ value: 5 }),
               }),
               right: new Identifier({ name: "x" }),
             }),
@@ -212,7 +212,7 @@ describe("BinaryExpression", () => {
               left: new Identifier({ name: "x" }),
               right: new BinaryExpression({
                 operator: "*",
-                left: new Literal({ value: 5 }),
+                left: new NumericLiteral({ value: 5 }),
                 right: new Identifier({ name: "x" }),
               }),
             }),
@@ -235,7 +235,7 @@ describe("BinaryExpression", () => {
               left: new BinaryExpression({
                 operator: "-",
                 left: new Identifier({ name: "x" }),
-                right: new Literal({ value: 5 }),
+                right: new NumericLiteral({ value: 5 }),
               }),
               right: new Identifier({ name: "x" }),
             }),
@@ -258,7 +258,7 @@ describe("BinaryExpression", () => {
               left: new Identifier({ name: "x" }),
               right: new BinaryExpression({
                 operator: "*",
-                left: new Literal({ value: 5 }),
+                left: new NumericLiteral({ value: 5 }),
                 right: new Identifier({ name: "x" }),
               }),
             }),
@@ -276,7 +276,7 @@ describe("BinaryExpression", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: 5 }),
+            expression: new NumericLiteral({ value: 5 }),
           }),
         ],
       })

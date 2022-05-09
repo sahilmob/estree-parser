@@ -1,5 +1,5 @@
 import { Parser } from "..";
-import { Literal, ExpressionStatement, Program } from "../nodes";
+import { Program, StringLiteral, ExpressionStatement } from "../nodes";
 
 describe("StringLiteral", () => {
   it("parses string literals with single quotes", () => {
@@ -10,7 +10,7 @@ describe("StringLiteral", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: "abc" }),
+            expression: new StringLiteral({ value: "abc" }),
           }),
         ],
       })
@@ -25,7 +25,7 @@ describe("StringLiteral", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: "abc" }),
+            expression: new StringLiteral({ value: "abc" }),
           }),
         ],
       })

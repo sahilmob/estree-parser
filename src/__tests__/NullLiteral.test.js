@@ -1,5 +1,5 @@
 import { Parser } from "..";
-import { Literal, ExpressionStatement, Program } from "../nodes";
+import { Program, NullLiteral, ExpressionStatement } from "../nodes";
 
 describe("NullLiteral", () => {
   it("parses null", () => {
@@ -10,7 +10,7 @@ describe("NullLiteral", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: null }),
+            expression: new NullLiteral(),
           }),
         ],
       })

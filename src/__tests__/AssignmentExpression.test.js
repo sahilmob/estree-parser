@@ -1,8 +1,11 @@
 import { Parser } from "..";
 import {
-  Literal,
   Program,
   Identifier,
+  NullLiteral,
+  StringLiteral,
+  BooleanLiteral,
+  NumericLiteral,
   ExpressionStatement,
   AssignmentExpression,
 } from "../nodes";
@@ -19,7 +22,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: "hello" }),
+              right: new StringLiteral({ value: "hello" }),
             }),
           }),
         ],
@@ -38,7 +41,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 1 }),
+              right: new NumericLiteral({ value: 1 }),
             }),
           }),
         ],
@@ -102,7 +105,7 @@ describe("AssignmentExpression", () => {
               right: new AssignmentExpression({
                 operator: "=",
                 left: new Identifier({ name: "y" }),
-                right: new Literal({ value: 1 }),
+                right: new NumericLiteral({ value: 1 }),
               }),
             }),
           }),
@@ -125,7 +128,7 @@ describe("AssignmentExpression", () => {
               right: new AssignmentExpression({
                 operator: "=",
                 left: new Identifier({ name: "y" }),
-                right: new Literal({ value: "hello" }),
+                right: new StringLiteral({ value: "hello" }),
               }),
             }),
           }),
@@ -148,7 +151,7 @@ describe("AssignmentExpression", () => {
               right: new AssignmentExpression({
                 operator: "=",
                 left: new Identifier({ name: "y" }),
-                right: new Literal({ value: null }),
+                right: new NullLiteral({ value: null }),
               }),
             }),
           }),
@@ -171,7 +174,7 @@ describe("AssignmentExpression", () => {
               right: new AssignmentExpression({
                 operator: "=",
                 left: new Identifier({ name: "y" }),
-                right: new Literal({ value: undefined }),
+                right: new Identifier({ name: "undefined" }),
               }),
             }),
           }),
@@ -194,7 +197,7 @@ describe("AssignmentExpression", () => {
               right: new AssignmentExpression({
                 operator: "=",
                 left: new Identifier({ name: "y" }),
-                right: new Literal({ value: true }),
+                right: new BooleanLiteral({ value: true }),
               }),
             }),
           }),
@@ -217,7 +220,7 @@ describe("AssignmentExpression", () => {
               right: new AssignmentExpression({
                 operator: "=",
                 left: new Identifier({ name: "y" }),
-                right: new Literal({ value: false }),
+                right: new BooleanLiteral({ value: false }),
               }),
             }),
           }),
@@ -237,7 +240,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "+=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -256,7 +259,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "-=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -275,7 +278,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "*=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -294,7 +297,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "/=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -313,7 +316,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "%=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -332,7 +335,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "|=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -351,7 +354,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "^=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -370,7 +373,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "&=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -389,7 +392,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: "<<=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -408,7 +411,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: ">>=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],
@@ -427,7 +430,7 @@ describe("AssignmentExpression", () => {
             expression: new AssignmentExpression({
               operator: ">>>=",
               left: new Identifier({ name: "x" }),
-              right: new Literal({ value: 5 }),
+              right: new NumericLiteral({ value: 5 }),
             }),
           }),
         ],

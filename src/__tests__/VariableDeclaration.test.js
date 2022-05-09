@@ -1,10 +1,13 @@
 import { Parser } from "..";
 import {
-  Literal,
   Program,
   Identifier,
-  VariableDeclaration,
+  NullLiteral,
+  StringLiteral,
+  BooleanLiteral,
+  NumericLiteral,
   VariableDeclarator,
+  VariableDeclaration,
 } from "../nodes";
 
 describe("VariableDeclaration", () => {
@@ -20,7 +23,7 @@ describe("VariableDeclaration", () => {
             declarations: [
               new VariableDeclarator({
                 id: new Identifier({ name: "x" }),
-                init: new Literal({ value: "hello" }),
+                init: new StringLiteral({ value: "hello" }),
               }),
             ],
           }),
@@ -41,7 +44,7 @@ describe("VariableDeclaration", () => {
             declarations: [
               new VariableDeclarator({
                 id: new Identifier({ name: "x" }),
-                init: new Literal({ value: 1 }),
+                init: new NumericLiteral({ value: 1 }),
               }),
             ],
           }),
@@ -61,7 +64,7 @@ describe("VariableDeclaration", () => {
             declarations: [
               new VariableDeclarator({
                 id: new Identifier({ name: "x" }),
-                init: new Literal({ value: 30 }),
+                init: new NumericLiteral({ value: 30 }),
               }),
             ],
           }),
@@ -82,15 +85,15 @@ describe("VariableDeclaration", () => {
             declarations: [
               new VariableDeclarator({
                 id: new Identifier({ name: "x" }),
-                init: new Literal({ value: 30 }),
+                init: new NumericLiteral({ value: 30 }),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "y" }),
-                init: new Literal({ value: 30 }),
+                init: new NumericLiteral({ value: 30 }),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "z" }),
-                init: new Literal({ value: 30 }),
+                init: new NumericLiteral({ value: 30 }),
               }),
             ],
           }),
@@ -111,15 +114,15 @@ describe("VariableDeclaration", () => {
             declarations: [
               new VariableDeclarator({
                 id: new Identifier({ name: "x" }),
-                init: new Literal({ value: null }),
+                init: new NullLiteral(),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "y" }),
-                init: new Literal({ value: null }),
+                init: new NullLiteral(),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "z" }),
-                init: new Literal({ value: null }),
+                init: new NullLiteral(),
               }),
             ],
           }),
@@ -140,15 +143,15 @@ describe("VariableDeclaration", () => {
             declarations: [
               new VariableDeclarator({
                 id: new Identifier({ name: "x" }),
-                init: new Literal({ value: undefined }),
+                init: new Identifier({ name: "undefined" }),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "y" }),
-                init: new Literal({ value: undefined }),
+                init: new Identifier({ name: "undefined" }),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "z" }),
-                init: new Literal({ value: undefined }),
+                init: new Identifier({ name: "undefined" }),
               }),
             ],
           }),
@@ -169,15 +172,15 @@ describe("VariableDeclaration", () => {
             declarations: [
               new VariableDeclarator({
                 id: new Identifier({ name: "x" }),
-                init: new Literal({ value: true }),
+                init: new BooleanLiteral({ value: true }),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "y" }),
-                init: new Literal({ value: true }),
+                init: new BooleanLiteral({ value: true }),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "z" }),
-                init: new Literal({ value: true }),
+                init: new BooleanLiteral({ value: true }),
               }),
             ],
           }),
@@ -198,15 +201,15 @@ describe("VariableDeclaration", () => {
             declarations: [
               new VariableDeclarator({
                 id: new Identifier({ name: "x" }),
-                init: new Literal({ value: false }),
+                init: new BooleanLiteral({ value: false }),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "y" }),
-                init: new Literal({ value: false }),
+                init: new BooleanLiteral({ value: false }),
               }),
               new VariableDeclarator({
                 id: new Identifier({ name: "z" }),
-                init: new Literal({ value: false }),
+                init: new BooleanLiteral({ value: false }),
               }),
             ],
           }),

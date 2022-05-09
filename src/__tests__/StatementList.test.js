@@ -1,5 +1,12 @@
 import { Parser } from "..";
-import { Literal, ExpressionStatement, Program } from "../nodes";
+import {
+  Program,
+  BooleanLiteral,
+  StringLiteral,
+  NullLiteral,
+  ExpressionStatement,
+  NumericLiteral,
+} from "../nodes";
 
 describe("StatementList", () => {
   it("parses two statements", () => {
@@ -10,10 +17,10 @@ describe("StatementList", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: "abc" }),
+            expression: new StringLiteral({ value: "abc" }),
           }),
           new ExpressionStatement({
-            expression: new Literal({ value: "def" }),
+            expression: new StringLiteral({ value: "def" }),
           }),
         ],
       })
@@ -28,13 +35,13 @@ describe("StatementList", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: "abc" }),
+            expression: new StringLiteral({ value: "abc" }),
           }),
           new ExpressionStatement({
-            expression: new Literal({ value: 1 }),
+            expression: new NumericLiteral({ value: 1 }),
           }),
           new ExpressionStatement({
-            expression: new Literal({ value: true }),
+            expression: new BooleanLiteral({ value: true }),
           }),
         ],
       })

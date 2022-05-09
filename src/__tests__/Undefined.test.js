@@ -1,5 +1,5 @@
 import { Parser } from "..";
-import { Literal, ExpressionStatement, Program } from "../nodes";
+import { Program, Identifier, ExpressionStatement } from "../nodes";
 
 describe("UndefinedLiteral", () => {
   it("parses undefined", () => {
@@ -10,7 +10,7 @@ describe("UndefinedLiteral", () => {
       new Program({
         body: [
           new ExpressionStatement({
-            expression: new Literal({ value: undefined }),
+            expression: new Identifier({ name: "undefined" }),
           }),
         ],
       })

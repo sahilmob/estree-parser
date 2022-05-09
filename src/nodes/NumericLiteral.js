@@ -1,6 +1,6 @@
-export class Literal {
+export class NumericLiteral {
   value;
-  type = "Literal";
+  type = "NumericLiteral";
 
   constructor(args) {
     this.value = args.value;
