@@ -3,6 +3,7 @@ import {
   Program,
   Identifier,
   StringLiteral,
+  BooleanLiteral,
   NumericLiteral,
   BinaryExpression,
   ExpressionStatement,
@@ -21,6 +22,44 @@ describe("BinaryExpression", () => {
               operator: "+",
               left: new NumericLiteral({ value: 5 }),
               right: new NumericLiteral({ value: 2 }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses + operator with booleans", () => {
+    const parser = new Parser("true + false;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new BinaryExpression({
+              operator: "+",
+              left: new BooleanLiteral({ value: true }),
+              right: new BooleanLiteral({ value: false }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses + operator with strings", () => {
+    const parser = new Parser("'a' + 'b';");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new BinaryExpression({
+              operator: "+",
+              left: new StringLiteral({ value: "a" }),
+              right: new StringLiteral({ value: "b" }),
             }),
           }),
         ],
