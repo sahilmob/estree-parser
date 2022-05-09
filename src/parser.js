@@ -8,7 +8,9 @@ import {
   NumericLiteral,
   EmptyStatement,
   BlockStatement,
+  UnaryExpression,
   BinaryExpression,
+  LogicalExpression,
   DebuggerStatement,
   VariableDeclarator,
   VariableDeclaration,
@@ -118,7 +120,7 @@ export class Parser {
   }
 
   assignmentExpression() {
-    const left = this.additiveExpression();
+    const left = this.logicalOrExpression();
 
     if (
       this.lookahead.type !== "SIMPLE_ASSIGN" &&
@@ -126,11 +128,43 @@ export class Parser {
     )
       return left;
 
-    const operator = this.binaryOperator();
+    const operator = this.assignmentOperator();
 
     const right = this.expression();
 
     return new AssignmentExpression({ left, right, operator });
+  }
+
+  logicalOrExpression() {
+    let left = this.logicalAndExpression();
+
+    while (this.lookahead.type === "LOGICAL_OR_OPERATOR") {
+      const operator = this.eat("LOGICAL_OR_OPERATOR");
+      const right = this.logicalAndExpression();
+      left = new LogicalExpression({
+        left,
+        right,
+        operator,
+      });
+    }
+
+    return left;
+  }
+
+  logicalAndExpression() {
+    let left = this.additiveExpression();
+
+    while (this.lookahead.type === "LOGICAL_AND_OPERATOR") {
+      const operator = this.eat("LOGICAL_AND_OPERATOR");
+      const right = this.additiveExpression();
+      left = new LogicalExpression({
+        left,
+        right,
+        operator,
+      });
+    }
+
+    return left;
   }
 
   additiveExpression() {
@@ -151,11 +185,11 @@ export class Parser {
   }
 
   multiplicativeExpression() {
-    let left = this.primaryExpression();
+    let left = this.unaryExpression();
 
     while (this.lookahead.type === "MULTIPLICATIVE_OPERATOR") {
       const operator = this.eat("MULTIPLICATIVE_OPERATOR");
-      const right = this.primaryExpression();
+      const right = this.unaryExpression();
 
       left = new BinaryExpression({
         left,
@@ -165,6 +199,24 @@ export class Parser {
     }
 
     return left;
+  }
+
+  unaryExpression() {
+    let operator = null;
+    switch (this.lookahead.type) {
+      case "ADDITIVE_OPERATOR":
+        operator = this.eat("ADDITIVE_EXPRESSION");
+        break;
+      case "LOGICAL_NOT_OPERATOR":
+        operator = this.eat("LOGICAL_NOT_OPERATOR");
+        break;
+    }
+
+    if (operator !== null) {
+      return new UnaryExpression({});
+    }
+
+    return this.primaryExpression();
   }
 
   // this highest providence of all expressions
@@ -241,7 +293,7 @@ export class Parser {
     return new Identifier({ name: "undefined" });
   }
 
-  binaryOperator() {
+  assignmentOperator() {
     switch (this.lookahead.type) {
       case "SIMPLE_ASSIGN":
         return this.eat("SIMPLE_ASSIGN");
