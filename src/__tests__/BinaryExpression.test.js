@@ -2,6 +2,7 @@ import { Parser } from "..";
 import {
   Program,
   Identifier,
+  StringLiteral,
   NumericLiteral,
   BinaryExpression,
   ExpressionStatement,
@@ -261,6 +262,29 @@ describe("BinaryExpression", () => {
                 left: new NumericLiteral({ value: 5 }),
                 right: new Identifier({ name: "x" }),
               }),
+            }),
+          }),
+        ],
+      })
+    );
+  });
+
+  it("parses parenthesized expression wit strings correctly", () => {
+    const parser = new Parser("('a' + 5) + b;");
+    const result = parser.parse();
+
+    expect(result).toEqual(
+      new Program({
+        body: [
+          new ExpressionStatement({
+            expression: new BinaryExpression({
+              operator: "+",
+              left: new BinaryExpression({
+                operator: "+",
+                left: new StringLiteral({ value: "a" }),
+                right: new NumericLiteral({ value: 5 }),
+              }),
+              right: new Identifier({ name: "b" }),
             }),
           }),
         ],
