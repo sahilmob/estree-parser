@@ -205,7 +205,7 @@ export class Parser {
     let operator = null;
     switch (this.lookahead.type) {
       case "ADDITIVE_OPERATOR":
-        operator = this.eat("ADDITIVE_EXPRESSION");
+        operator = this.eat("ADDITIVE_OPERATOR");
         break;
       case "LOGICAL_NOT_OPERATOR":
         operator = this.eat("LOGICAL_NOT_OPERATOR");
@@ -213,7 +213,11 @@ export class Parser {
     }
 
     if (operator !== null) {
-      return new UnaryExpression({});
+      return new UnaryExpression({
+        operator,
+        prefix: true,
+        argument: this.primaryExpression(),
+      });
     }
 
     return this.primaryExpression();

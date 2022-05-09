@@ -22,6 +22,9 @@ const SPEC = [
   ["COMPLEX_ASSIGN", /^[\*\/\+\-\|\^\&\%]=/],
   ["ADDITIVE_OPERATOR", /^[+\-]/],
   ["MULTIPLICATIVE_OPERATOR", /^[*\/]/],
+  ["LOGICAL_AND_OPERATOR", /^&&/],
+  ["LOGICAL_OR_OPERATOR", /^\|\|/],
+  ["LOGICAL_NOT_OPERATOR", /^!/],
   ["COMPLEX_ASSIGN", /^>{2,3}=/],
   ["COMPLEX_ASSIGN", /^<{2}=/],
 ];
